@@ -1,0 +1,26 @@
+name: Java CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: Build with Maven
+      run: mvn package
+
+    - name: Run
+      run: java -cp target/classes:$(mvn dependency:build-classpath -q -Dmdep.outputFilterFile=true -DincludeScope=runtime) Main
