@@ -1,0 +1,31 @@
+name: Java Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Copy Gson JAR
+        run: cp "gson-2.10.1.jar" .
+
+      - name: Compile
+        run: javac -cp .:gson-2.10.1.jar Student.java StudentManager.java FileHandler.java Menu.java Main.java
+
+      - name: Verify compilation
+        run: |
+          ls -la *.class
+          echo "Build successful — all .class files generated"

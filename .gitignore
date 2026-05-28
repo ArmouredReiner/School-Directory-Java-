@@ -1,0 +1,16 @@
+# Compiled class files
+*.class
+
+# Gson JAR (download it manually if needed)
+# gson-2.10.1.jar
+
+# Runtime-generated files
+students.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+*.iml
+.idea/

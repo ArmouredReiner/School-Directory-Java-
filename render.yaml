@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: student-management-system
+    env: java
+    buildCommand: javac -cp .:gson-2.10.1.jar Student.java StudentManager.java FileHandler.java Menu.java Main.java
+    startCommand: java -cp .:gson-2.10.1.jar Main
